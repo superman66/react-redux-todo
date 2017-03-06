@@ -4,15 +4,25 @@
 import React, {Component} from 'react'
 
 class Link extends Component {
-  constructor(props) {
-    super(props)
-  }
-
   render() {
+    if (this.props.active) {
+      return <span>{this.props.children}</span>
+    }
     return (
-        <div>Link</div>
+        <a href="#"
+           onClick={ e => {
+             e.preventDefault();
+             this.props.onClick()
+           }}
+        >
+          {this.props.children}
+        </a>
     )
   }
 }
-
+Link.PropTypes = {
+  active: React.PropTypes.bool.isRequired,
+  children: React.PropTypes.node.isRequired,
+  onClick: React.PropTypes.func.isRequired
+}
 export default Link
