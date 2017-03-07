@@ -2,20 +2,16 @@
  * Created by superman on 17/3/6.
  */
 import {combineReducers} from 'redux'
-
 import {
-  VersibilityFilter,
+  VisibilityFilters,
   SET_VISIBILITY_FILTER,
   ADD_TODO,
   TOGGLE_TODO
 } from './actions'
+const {SHOW_ALL} = VisibilityFilters
 
-const initialState = {
-  visibilityFilter: VersibilityFilter.SHOW_ALL,
-  todos: []
-};
 
-function visibilityFilter(state = [], action) {
+function visibilityFilter(state = SHOW_ALL, action) {
   switch (action.type) {
     case SET_VISIBILITY_FILTER:
       return Object.assign({}, state, {
@@ -33,15 +29,13 @@ function todos(state = [], action) {
         visibilityFilter: action.filter
       });
     case ADD_TODO:
-      return Object.assign({}, state, {
-        todos: [
-          ...state.todos,
-          {
-            text: action.text,
-            completed: false
-          }
-        ]
-      })
+      return [
+        ...state,
+        {
+          text: action.text,
+          completed: false
+        }
+      ]
     case TOGGLE_TODO:
       return Object.assign({}, state, {
         todos: state.todos.map((todo, index) => {

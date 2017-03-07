@@ -1,7 +1,7 @@
 /**
  * Created by superman on 17/3/6.
  */
-import React, {Component} from 'react'
+import React, {Component, PropTypes} from 'react'
 
 class Link extends Component {
   render() {
@@ -21,8 +21,8 @@ class Link extends Component {
   }
 }
 Link.PropTypes = {
-  active: React.PropTypes.bool.isRequired,
-  children: React.PropTypes.node.isRequired,
-  onClick: React.PropTypes.func.isRequired
+  active: PropTypes.bool.isRequired,
+  children: PropTypes.node.isRequired,
+  onClick: PropTypes.func.isRequired
 }
 export default Link

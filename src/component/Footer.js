@@ -1,23 +1,46 @@
 /**
- * Created by superman on 17/3/6.
+ * Created by superman on 17/3/7.
  */
-import React, {Component} from 'react'
-import FilterLink from '../containers/FilterLink'
+import React, {Component, PropTypes} from 'react'
+import {VisibilityFilters} from '../actions'
 
-const Footer = () => (
-    <p>
-      Show:
-      {" "}
-      <FilterLink filter="SHOW_ALL">
-        SHOW_ALL
-      </FilterLink>
-      <FilterLink filter="SHOW_ACTIVE">
-        SHOW_ACTIVE
-      </FilterLink>
-      <FilterLink filter="SHOW_COMPLETED">
-        SHOW_COMPLETED
-      </FilterLink>
-    </p>
-)
+class Footer extends Component {
+  renderFilter(filter, name) {
+    if (filter === this.props.filter) {
+      return name;
+    }
+    return (
+        <a href="#" onClick={e => {
+          e.preventDefault();
+          this.props.onFilterChange(filter)
+        }}>
+          {name}
+        </a>
+    )
+  }
 
+  render() {
+    return (
+        <p>
+          Show:
+          {' '}
+          {this.renderFilter(VisibilityFilters.SHOW_ALL, 'ALL')}
+          {', '}
+          {this.renderFilter(VisibilityFilters.SHOW_COMPLETED, 'Completed')}
+          {', '}
+          {this.renderFilter(VisibilityFilters.SHOW_ACTIVE, 'Active')}
+          .
+        </p>
+    )
+  }
+}
+
+Footer.propTypes = {
+  onFilterChange: PropTypes.func.isRequired,
+  filter: PropTypes.oneOf([
+    VisibilityFilters.SHOW_ALL,
+    VisibilityFilters.SHOW_COMPLETED,
+    VisibilityFilters.SHOW_ACTIVE
+  ]).isRequired
+}
 export default Footer
