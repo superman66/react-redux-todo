@@ -46,21 +46,21 @@ App.propTypes = {
     text: PropTypes.string.isRequired
   }).isRequired).isRequired,
   visibilityFilter: PropTypes.oneOf([
-    VisibilityFilters.SHOW_ALL,
-    VisibilityFilters.SHOW_COMPLETED,
-    VisibilityFilters.SHOW_ACTIVE
+    'SHOW_ALL',
+    'SHOW_COMPLETED',
+    'SHOW_ACTIVE'
   ]).isRequired
 }
 
 function selectTodos(todos, filter) {
   switch (filter) {
-    case 'SHOW_ALL': {
+    case VisibilityFilters.SHOW_ALL: {
       return todos;
     }
-    case 'SHOW_COMPLETED': {
+    case VisibilityFilters.SHOW_COMPLETED: {
       return todos.filter(t => t.completed)
     }
-    case 'SHOW_ACTIVE': {
+    case VisibilityFilters.SHOW_ACTIVE: {
       return todos.filter(t => !t.completed)
     }
   }

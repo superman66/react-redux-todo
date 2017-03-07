@@ -12,7 +12,7 @@ class TodoList extends Component {
               <Todo
                   key={index}
                   {...value}
-                  onclick={() => this.props.onTodoClick(index)}
+                  onClick={() => this.props.onTodoClick(index)}
               />
           )}
         </ul>
