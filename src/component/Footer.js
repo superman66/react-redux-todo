@@ -2,7 +2,7 @@
  * Created by superman on 2017/3/20.
  */
 
-import React, {Component} from 'react'
+import React, {Component, PropTypes} from 'react'
 import VisibilityFilters from '../constants/filterTypes'
 
 class Footer extends Component {
@@ -37,4 +37,12 @@ class Footer extends Component {
   }
 }
 
+Footer.propTypes = {
+  filter: PropTypes.oneOf([
+    VisibilityFilters.SHOW_ALL,
+    VisibilityFilters.SHOW_COMPLETED,
+    VisibilityFilters.SHOW_ACTIVE
+  ]).isRequired,
+  onFilterChange: PropTypes.func.isRequired
+}
 export default Footer

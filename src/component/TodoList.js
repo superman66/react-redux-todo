@@ -8,10 +8,10 @@ import Todo from './Todo'
 function TodoList({onTodoClick, todos}) {
   return (
       <ul>
-        {todos.map(todo =>
+        {todos.map((todo, index) =>
             <Todo
-                onClick={()=>onTodoClick(todo.id)}
-                key={todo.id}
+                onClick={()=>onTodoClick(todo.index)}
+                key={index}
                 {...todo}
             />
         )}
@@ -22,7 +22,6 @@ function TodoList({onTodoClick, todos}) {
 TodoList.propTypes = {
   onTodoClick: PropTypes.func.isRequired,
   todos: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.number.isRequired,
     completed: PropTypes.bool.isRequired,
     text: PropTypes.string.isRequired
   }).isRequired).isRequired

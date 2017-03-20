@@ -4,20 +4,20 @@
 import {ADD_TODO, TOGGLE_TODO, SET_VISIBILITY_FILTER} from '../constants/actionTypes'
 import {VisibilityFilters} from '../constants/filterTypes'
 
-function addTodo(text) {
+export function addTodo(text) {
   return {
     type: ADD_TODO,
     text
   }
 }
 
-function toggleTodo(id) {
+export function toggleTodo(id) {
   return {
     type: TOGGLE_TODO,
     id
   }
 }
-function setVisibilityFilter(filter) {
+export function setVisibilityFilter(filter) {
   return {
     type: SET_VISIBILITY_FILTER,
     filter
