@@ -15,8 +15,10 @@ class App extends Component {
     super(props)
   }
 
+  componentWillMount(){
+  }
   render() {
-    const {dispatch, visibleTodos, visibilityFilter} = this.props;
+    const {dispatch, visibleTodos, params} = this.props;
     return (
         <div>
           <AddTodo
@@ -26,11 +28,7 @@ class App extends Component {
           <TodoList onTodoClick={ index => {
             dispatch(toggleTodo(index))
           }} todos={visibleTodos} />
-          <Footer
-              filter={visibilityFilter}
-              onFilterChange={ nextFilter =>
-                  dispatch(setVisibilityFilter(nextFilter))}
-          />
+          <Footer/>
         </div>
     )
   }
@@ -39,12 +37,7 @@ App.propTypes = {
   visibleTodos: PropTypes.arrayOf(PropTypes.shape({
     completed: PropTypes.bool.isRequired,
     text: PropTypes.string.isRequired
-  }).isRequired).isRequired,
-  visibilityFilter: PropTypes.oneOf([
-    VisibilityFilters.SHOW_ALL,
-    VisibilityFilters.SHOW_COMPLETED,
-    VisibilityFilters.SHOW_ACTIVE
-  ])
+  }).isRequired).isRequired
 }
 
 function selectTodos(todos, filter) {
