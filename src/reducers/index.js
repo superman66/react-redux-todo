@@ -2,9 +2,9 @@
  * Created by superman on 2017/3/20.
  */
 
-import {combieReducers} from 'redux'
+import {combineReducers} from 'redux'
 import {ADD_TODO, TOGGLE_TODO, SET_VISIBILITY_FILTER} from '../constants/actionTypes'
-import {SHOW_ALL} from '../constants/filterTypes'
+import {VisibilityFilters} from '../constants/filterTypes'
 
 // reducer 接收旧的state和action,返回新的state
 
@@ -28,11 +28,14 @@ function todos(state = [], action) {
         }
         return todo;
       })
+    default:
+      return state
   }
+
 }
 
 
-function visibilityFilter(state = SHOW_ALL, action) {
+function visibilityFilter(state = VisibilityFilters.SHOW_ALL, action) {
   switch (action.type) {
     case SET_VISIBILITY_FILTER:
       return action.filter
@@ -42,7 +45,7 @@ function visibilityFilter(state = SHOW_ALL, action) {
 }
 
 
-const todoApp = combieReducers({
+const todoApp = combineReducers({
   visibilityFilter,
   todos
 })

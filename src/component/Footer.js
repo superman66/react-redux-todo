@@ -3,7 +3,7 @@
  */
 
 import React, {Component, PropTypes} from 'react'
-import VisibilityFilters from '../constants/filterTypes'
+import {VisibilityFilters} from '../constants/filterTypes'
 
 class Footer extends Component {
   renderFilter(filter, name) {

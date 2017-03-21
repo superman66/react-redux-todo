@@ -16,19 +16,16 @@ class App extends Component {
   }
 
   render() {
-    const {dispatch, visibleTodos, visibilityFilter} = tihs.props;
+    const {dispatch, visibleTodos, visibilityFilter} = this.props;
     return (
         <div>
           <AddTodo
               onAddClick={text =>
                   dispatch(addTodo(text))}
           />
-          <TodoList
-              todos={visibleTodos}
-              onTodoClick={id =
-                  dispatch(toggleTodo(index))
-              }
-          />
+          <TodoList onTodoClick={ index => {
+            dispatch(toggleTodo(index))
+          }} todos={visibleTodos} />
           <Footer
               filter={visibilityFilter}
               onFilterChange={ nextFilter =>
@@ -40,8 +37,8 @@ class App extends Component {
 }
 App.propTypes = {
   visibleTodos: PropTypes.arrayOf(PropTypes.shape({
-    text: PropTypes.string, isRequired,
     completed: PropTypes.bool.isRequired,
+    text: PropTypes.string.isRequired
   }).isRequired).isRequired,
   visibilityFilter: PropTypes.oneOf([
     VisibilityFilters.SHOW_ALL,
@@ -63,7 +60,7 @@ function selectTodos(todos, filter) {
 
 function select(state) {
   return {
-    visibleTodos: selectTodos(state, todos, state.visibilityFilter),
+    visibleTodos: selectTodos(state.todos, state.visibilityFilter),
     visibilityFilter: state.visibilityFilter
   }
 }
