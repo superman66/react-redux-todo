@@ -10,15 +10,19 @@ class Footer extends Component {
 
   render() {
     return (
-        <p>
-          show:
-          {' '}
-          <FilterLink filter='all'>All</FilterLink>
-          {', '}
-          <FilterLink filter="completed">Completed</FilterLink>
-          {', '}
-          <FilterLink filter="active">Active</FilterLink>
-        </p>
+        <footer className="footer">
+          <ul className="filters">
+            <li>
+              <FilterLink filter='all'>All</FilterLink>
+            </li>
+            <li>
+              <FilterLink filter="completed">Completed</FilterLink>
+            </li>
+            <li>
+              <FilterLink filter="active">Active</FilterLink>
+            </li>
+          </ul>
+        </footer>
     )
   }
 }

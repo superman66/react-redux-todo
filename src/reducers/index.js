@@ -3,11 +3,11 @@
  */
 
 import {combineReducers} from 'redux'
-import {ADD_TODO, TOGGLE_TODO, SET_VISIBILITY_FILTER} from '../constants/actionTypes'
+import {ADD_TODO, TOGGLE_TODO, REMOVE_TODO, SET_VISIBILITY_FILTER} from '../constants/actionTypes'
 import {VisibilityFilters} from '../constants/filterTypes'
 
-// reducer 接收旧的state和action,返回新的state
 
+// reducer 接收旧的state和action,返回新的state
 function todos(state = [], action) {
   switch (action.type) {
     case ADD_TODO:
@@ -28,6 +28,10 @@ function todos(state = [], action) {
         }
         return todo;
       })
+      case REMOVE_TODO:
+      return state.filter((todo, index) => {
+        return index !== action.id
+      })
     default:
       return state
   }
@@ -35,7 +39,7 @@ function todos(state = [], action) {
 }
 
 
-function visibilityFilter(state = VisibilityFilters.SHOW_ALL, action) {
+function visibilityFilter(state = 'all', action) {
   switch (action.type) {
     case SET_VISIBILITY_FILTER:
       return action.filter

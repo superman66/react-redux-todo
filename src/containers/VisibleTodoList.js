@@ -2,19 +2,19 @@
  * Created by superman on 2017/3/21.
  */
 
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
 import TodoList from '../component/TodoList'
-import {toggleTodo} from '../actions/index'
-import {VisibilityFilters} from '../constants/filterTypes'
+import { toggleTodo, removeTodo } from '../actions/index'
+import { VisibilityFilters } from '../constants/filterTypes'
 
 function visibleTodos(todos, filter) {
   switch (filter) {
-    case VisibilityFilters.SHOW_ALL:
+    case 'all':
       return todos;
-    case VisibilityFilters.SHOW_ACTIVE:
+    case 'active':
       return todos.filter(todo => !todo.completed);
-    case VisibilityFilters.SHOW_COMPLETED:
-      return todos.filter(todo => !todo.completed)
+    case 'completed':
+      return todos.filter(todo => todo.completed)
     default:
       return todos
   }
@@ -22,7 +22,7 @@ function visibleTodos(todos, filter) {
 
 function mapState2Props(state, ownProps) {
   return {
-    todos: visibleTodos(state.todos, ownProps.fliter)
+    todos: visibleTodos(state.todos, ownProps.filter)
   }
 }
 
@@ -30,11 +30,14 @@ function mapDispatch2Props(dispatch) {
   return {
     onTodoClick: (id) => {
       dispatch(toggleTodo(id))
+    },
+    onRemoveTodoClick: (id) => {
+      dispatch(removeTodo(id))
     }
   }
 }
 
 export default connect(
-    mapState2Props,
-    mapDispatch2Props
+  mapState2Props,
+  mapDispatch2Props
 )(TodoList)

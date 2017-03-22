@@ -2,29 +2,31 @@
  * Created by superman on 2017/3/20.
  */
 
-import React, {Component, PropTypes} from 'react'
+import React, { Component, PropTypes } from 'react'
 
 class AddTodoView extends Component {
 
   render() {
     return (
-        <div>
-          <input
-              type="text"
-              ref='input'/>
-          <button
-              onClick={ e => this.handleClick(e)}>
-            Add
-          </button>
-        </div>
+      <header className="header">
+        <h1>todos</h1>
+        <input
+          className="new-todo"
+          type="text"
+          onKeyUp={e => this.handleClick(e)}
+          placeholder="input todo item"
+          ref='input' />
+      </header>
     )
   }
 
   handleClick(e) {
-    const node = this.refs.input;
-    const text = node.value.trim();
-    this.props.onAddClick(text);
-    node.value = '';
+    if (e.keyCode == 13) {
+      const node = this.refs.input;
+      const text = node.value.trim();
+      this.props.onAddClick(text);
+      node.value = '';
+    }
   }
 
 }

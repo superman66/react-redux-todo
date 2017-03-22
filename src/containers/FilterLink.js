@@ -9,8 +9,13 @@ class FilterLink extends Component {
 
   render() {
     return (
-        <Link
-            to={this.props.filter === 'all' ? '' : this.props.filter}>
+        <Link 
+            to={this.props.filter === 'all' ? '/' : this.props.filter}
+            activeStyle={{
+              textDecoration: 'none',
+              color: 'black'
+            }}
+            >
           {this.props.children}
         </Link>
     )

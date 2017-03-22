@@ -5,6 +5,7 @@ import {Provider} from 'react-redux'
 import todoApp from './reducers/index'
 import Router from './routes/index'
 import './index.css';
+import 'todomvc-app-css/index.css'
 
 ReactDOM.render(
     Router,
