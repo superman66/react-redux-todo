@@ -10,7 +10,7 @@ class FilterLink extends Component {
   render() {
     return (
         <Link
-            to={this.props.filter === 'all' ? '/' : this.props.filter}>
+            to={this.props.filter === 'all' ? '' : this.props.filter}>
           {this.props.children}
         </Link>
     )
